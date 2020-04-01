@@ -43,8 +43,8 @@ class FWUIImageViewCell: UICollectionViewCell {
         
         if imageName != nil {
             self.imageView.image = UIImage(named: imageName!)
-        } else if imageUrl != nil {
-            self.imageView.kf.setImage(with: URL(string: imageUrl!), placeholder: placeholderImage, options: nil, progressBlock: nil, completionHandler: nil)
+        } else if imageUrl != nil { 
+            self.imageView.kf.setImage(with: URL(string: imageUrl!), placeholder: placeholderImage)
         }
     }
 }

@@ -152,7 +152,7 @@ open class FWCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     private var loopTimesOrigin = loopTimesDefault
     
     /// 轮播图滚动方向
-    @objc public var scrollDirection: UICollectionViewScrollDirection = .horizontal
+    @objc public var scrollDirection: UICollectionView.ScrollDirection = .horizontal
     /// 选中分页控件的颜色
     @objc public var currentPageDotColor = UIColor.white {
         didSet {
@@ -180,7 +180,7 @@ open class FWCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     /// 分页控件位置
     @objc public var pageControlAliment: PageControlAliment = .center
     /// 分页控件Insets值
-    @objc public var pageControlInsets: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    @objc public var pageControlInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     /// 分页控件默认距离的边距
     @objc public var pageControlMargin: CGFloat = 10
     
@@ -216,7 +216,7 @@ open class FWCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
                     if currentIndex > sourceArray!.count {
                         row = currentIndex - currentIndex % sourceArray!.count
                     }
-                    self.collectionView.scrollToItem(at: IndexPath(row: row, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
+                    self.collectionView.scrollToItem(at: IndexPath(row: row, section: 0), at: UICollectionView.ScrollPosition.left, animated: false)
                 }
                 self.collectionView.reloadData()
                 self.setupPageControl()
@@ -551,7 +551,7 @@ extension FWCycleScrollView {
                 self.loopTimes = loopTimesOrigin
             }
             self.rollTimer = Timer.scheduledTimer(timeInterval: self.autoScrollTimeInterval, target: self, selector: #selector(automaticScroll), userInfo: nil, repeats: true)
-            RunLoop.main.add(self.rollTimer!, forMode: .commonModes)
+            RunLoop.main.add(self.rollTimer!, forMode: RunLoop.Mode.common)
         }
     }
     
